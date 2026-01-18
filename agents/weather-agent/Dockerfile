@@ -5,17 +5,14 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Copy package files
-COPY package.json yarn.lock ./
-
+COPY package.json ./
 # Install dependencies
-RUN yarn install --frozen-lockfile
-
+RUN npm install --frozen-lockfile --production
 # Copy source code
 COPY . .
 
 # Build the TypeScript code
-RUN yarn build
-
+RUN npm run build
 # Stage 2: Production
 FROM node:20-alpine AS runner
 
@@ -23,11 +20,11 @@ FROM node:20-alpine AS runner
 WORKDIR /app
 
 # Install production dependencies only
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --production
+COPY package.json ./
+RUN npm install --frozen-lockfile --production
 
-# Install TypeScript and type definitions needed for LangGraph CLI
-RUN yarn add --dev typescript @types/node
+# Install TypeScript and type definitions needed for Langgraph CLI
+RUN npm add --dev typescript @types/node
 
 # Copy built code from builder stage
 COPY --from=builder /app/build ./build
@@ -45,9 +42,5 @@ ENV PORT=8000
 # Expose port
 EXPOSE 8000
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=40s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:8000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
-
-# Start the LangGraph server
-CMD ["npx", "@langchain/langgraph-cli", "dev", "--host", "0.0.0.0", "--port", "8000", "--no-browser"]
+# Start command
+CMD ["npm", "start"]
