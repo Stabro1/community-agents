@@ -43,4 +43,4 @@ ENV PORT=8000
 EXPOSE 8000
 
 # Start command
-CMD ["npm", "start"]
+CMD ["npx", "@langchain/langgraph-cli", "dev"]
