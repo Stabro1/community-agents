@@ -1,0 +1,11 @@
+{
+  "node_version": "20",
+  "graphs": [
+    {"weather_agent": "./src/graph.ts:graph"}
+  ],
+  "http": {
+    "app": "./src/webapp.ts:app"
+  },
+  "env": ".env",
+  "dependencies": [".*"]
+}
