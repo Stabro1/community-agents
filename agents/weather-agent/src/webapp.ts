@@ -6,7 +6,7 @@ app.get("/.well-known/agent-card.json", (c) => {
   return c.json({
     name: "Weather Agent Pro",
     description: "Get real-time weather information for any location worldwide. This agent provides current conditions and forecasts.",
-    url: "https://community-agents-production.up.railway.app",
+    url: "https://community-agents-production-b102.up.railway.app",
     version: "1.0.0",
     capabilities: {
       streaming: true,
