@@ -4,8 +4,7 @@
     "weather_agent": "./src/graph.ts:graph"
   },
       "http": {
-        "app": "./src/webapp.py:app"
-    },
+        "app": "./src/webapp.ts:app"    },
     "env": ".env",
   "dependencies": ["."]
 }
