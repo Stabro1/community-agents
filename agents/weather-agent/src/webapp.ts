@@ -1,6 +1,16 @@
 import { Hono } from "hono";
+import { cors } from 'hono/cors';
 
 export const app = new Hono();
+
+// Enable CORS for Warden Studio
+app.use('/*', cors({
+  origin: '*',
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowHeaders: ['Content-Type', 'Authorization', 'x-api-key'],
+  exposeHeaders: ['Content-Length', 'X-Request-Id'],
+  credentials: true,
+}));
 
 app.get("/.well-known/agent-card.json", (c) => {
   return c.json({
