@@ -19,7 +19,6 @@ app.get("/.well-known/agent-card.json", (c) => {
       {
         name: "get_weather",
         description: "Get current weather for any location",
-              
         inputModes: ["text"],
         outputModes: ["text"],
       },
@@ -30,18 +29,18 @@ app.get("/.well-known/agent-card.json", (c) => {
         outputModes: ["text"],
       },
     ],
-          pricing: {
-                    model: "per_inference",
-                    price: 0.01,
-                    currency: "USDC"
-                  },
+    pricing: {
+      model: "per_inference",
+      price: 0.01,
+      currency: "USDC"
+    },
   });
-  
+});
 
-  app.get("/", (c) => {
-  return c.json({ 
+app.get("/", (c) => {
+  return c.json({
     message: "Weather Agent Pro API",
     status: "active",
     version: "1.0.0"
   });
-
+});
