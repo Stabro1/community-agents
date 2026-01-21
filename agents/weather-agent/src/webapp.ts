@@ -36,4 +36,12 @@ app.get("/.well-known/agent-card.json", (c) => {
                     currency: "USDC"
                   },
   });
+
+  app.get("/", (c) => {
+  return c.json({ 
+    message: "Weather Agent Pro API",
+    status: "active",
+    version: "1.0.0"
+  });
+});
 });
