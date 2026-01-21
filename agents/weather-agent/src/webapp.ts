@@ -4,7 +4,7 @@ export const app = new Hono();
 
 app.get("/.well-known/agent-card.json", (c) => {
   return c.json({
-    name: "Weather Agent",
+    name: "Weather Agent Pro",
     description: "Get real-time weather information for any location worldwide. This agent provides current conditions and forecasts.",
     url: "https://community-agents-production.up.railway.app",
     version: "1.0.0",
@@ -19,6 +19,7 @@ app.get("/.well-known/agent-card.json", (c) => {
       {
         name: "get_weather",
         description: "Get current weather for any location",
+              
         inputModes: ["text"],
         outputModes: ["text"],
       },
@@ -29,5 +30,10 @@ app.get("/.well-known/agent-card.json", (c) => {
         outputModes: ["text"],
       },
     ],
+          pricing: {
+                    model: "per_inference",
+                    price: 0.01,
+                    currency: "USDC"
+                  },
   });
 });
