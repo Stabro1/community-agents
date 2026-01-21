@@ -36,6 +36,7 @@ app.get("/.well-known/agent-card.json", (c) => {
                     currency: "USDC"
                   },
   });
+  
 
   app.get("/", (c) => {
   return c.json({ 
@@ -43,5 +44,5 @@ app.get("/.well-known/agent-card.json", (c) => {
     status: "active",
     version: "1.0.0"
   });
-});
+
 });
