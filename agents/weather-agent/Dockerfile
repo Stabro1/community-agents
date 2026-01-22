@@ -42,5 +42,8 @@ ENV PORT=8000
 # Expose port
 EXPOSE 8000
 
+# Set LangGraph port for proxy
+ENV LANGGRAPH_PORT=2024
 
-CMD ["langgraph", "up"]
+
+CMD sh -c 'langgraph up --port 2024 & node proxy-server.js'
