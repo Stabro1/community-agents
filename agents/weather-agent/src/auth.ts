@@ -16,6 +16,11 @@ import { Auth, HTTPException } from "@langchain/langgraph-sdk/auth";
  * If no key is set, authentication is disabled (not recommended for production).
  */
 export const auth = new Auth().authenticate(async (request: Request) => {
+  
+  // Allow public access to agent-card endpoint
+  if (request.url?.includes('/.well-known/agent-card.json')) {
+    return; // No authentication required
+  }
   const providedKey = request.headers.get("x-api-key");
   const validKey = process.env.AGENT_API_KEY;
 
