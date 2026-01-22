@@ -42,9 +42,5 @@ ENV PORT=8000
 # Expose port
 EXPOSE 8000
 
-# Start command
 
-# Install Python dependencies for webapp
-RUN pip install fastapi uvicorn
-
-CMD ["uvicorn", "src.webapp:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["langgraph", "up"]
