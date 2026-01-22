@@ -1,0 +1,28 @@
+{
+  "name": "Weather Intelligence",
+  "description": "Get real-time weather information for any location worldwide. Provides current conditions, forecasts, and detailed weather data using advanced AI.",
+  "url": "https://community-agents-production-b102.up.railway.app",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false
+  },
+  "defaultInputModes": ["text"],
+  "defaultOutputModes": ["text"],
+  "skills": [
+    {
+      "id": "weather_query",
+      "name": "Weather Information",
+      "description": "Get current weather, forecasts, and conditions for any location",
+      "tags": ["weather", "forecast", "conditions", "info"],
+      "examples": [
+        "What's the weather in London?",
+        "Will it rain tomorrow in New York?",
+        "Temperature in Tokyo today"
+      ]
+    }
+  ],
+  "authentication": {
+    "schemes": ["public"]
+  }
+}
