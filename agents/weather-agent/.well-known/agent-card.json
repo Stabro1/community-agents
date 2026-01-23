@@ -1,28 +1,122 @@
 {
-  "name": "Weather Intelligence",
-  "description": "Get real-time weather information for any location worldwide. Provides current conditions, forecasts, and detailed weather data using advanced AI.",
+  "schemaVersion": "1.0",
+  "humanReadableId": "stabro1/weather-intelligence",
+  "agentVersion": "1.2.0",
+  "name": "Weather Intelligence Pro",
+  "description": "Professional real-time weather intelligence agent providing accurate forecasts, current conditions, and detailed meteorological data for any location worldwide. Powered by reliable weather APIs with 24/7 availability at just $0.01 per query.",
   "url": "https://community-agents-production-b102.up.railway.app",
-  "version": "1.0.0",
-  "capabilities": {
-    "streaming": true,
-    "pushNotifications": false
+  
+  "provider": {
+    "name": "Stabro1 AI Agents",
+    "url": "https://github.com/Stabro1/community-agents",
+    "support_contact": "github.com/Stabro1"
   },
-  "defaultInputModes": ["text"],
-  "defaultOutputModes": ["text"],
+  
+  "capabilities": {
+    "a2aVersion": "1.0",
+    "streaming": true,
+    "supportedMessageParts": ["text"],
+    "supportsPushNotifications": false
+  },
+  
+  "authSchemes": [
+    {
+      "scheme": "none",
+      "description": "Public access - pay-per-query via Warden Protocol"
+    }
+  ],
+  
   "skills": [
     {
-      "id": "weather_query",
-      "name": "Weather Information",
-      "description": "Get current weather, forecasts, and conditions for any location",
-      "tags": ["weather", "forecast", "conditions", "info"],
+      "id": "current_weather",
+      "name": "Current Weather Conditions",
+      "description": "Get real-time weather conditions including temperature, humidity, wind speed, and atmospheric pressure for any global location",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "City name, coordinates, or location query"
+          },
+          "units": {
+            "type": "string",
+            "enum": ["metric", "imperial"],
+            "default": "metric"
+          }
+        },
+        "required": ["location"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "temperature": {"type": "number"},
+          "feels_like": {"type": "number"},
+          "humidity": {"type": "number"},
+          "conditions": {"type": "string"},
+          "wind_speed": {"type": "number"}
+        }
+      },
       "examples": [
-        "What's the weather in London?",
-        "Will it rain tomorrow in New York?",
-        "Temperature in Tokyo today"
+        "What's the current weather in London?",
+        "Temperature in New York right now",
+        "Current conditions in Tokyo"
+      ]
+    },
+    {
+      "id": "weather_forecast",
+      "name": "Weather Forecast",
+      "description": "Get detailed weather forecasts for upcoming days including temperature trends, precipitation probability, and weather patterns",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "City name or location"
+          },
+          "days": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7,
+            "default": 3
+          }
+        },
+        "required": ["location"]
+      },
+      "examples": [
+        "Will it rain tomorrow in Paris?",
+        "7-day forecast for San Francisco",
+        "Weather outlook for Berlin this week"
+      ]
+    },
+    {
+      "id": "weather_alerts",
+      "name": "Weather Alerts & Warnings",
+      "description": "Check for active weather alerts, warnings, and severe weather notifications for specified locations",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "Location to check for weather alerts"
+          }
+        },
+        "required": ["location"]
+      },
+      "examples": [
+        "Any weather warnings in Miami?",
+        "Severe weather alerts for Texas",
+        "Storm warnings in Hong Kong"
       ]
     }
   ],
-  "authentication": {
-    "schemes": ["public"]
-  }
+  
+  "tags": ["weather", "forecast", "climate", "meteorology", "temperature", "conditions", "real-time", "global", "alerts", "accuracy", "affordable", "24/7"],
+  
+  "defaultInputModes": ["text"],
+  "defaultOutputModes": ["text"],
+  
+  "privacyPolicyUrl": "https://docs.wardenprotocol.org/learn/privacy",
+  "termsOfServiceUrl": "https://docs.wardenprotocol.org/learn/terms",
+  "iconUrl": "https://raw.githubusercontent.com/Stabro1/community-agents/main/agents/weather-agent/images/weather-icon.png",
+  "lastUpdated": "2025-01-20T12:00:00Z"
 }
